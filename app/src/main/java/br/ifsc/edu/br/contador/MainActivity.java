@@ -16,19 +16,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button mybutton = findViewById(R.id.button);
+        Button conversor1 = findViewById(R.id.button1);
         TextView myTextView = findViewById(R.id.textView);
-        EditText edMin = findViewById(R.id.edMin);
-        EditText edMax = findViewById(R.id.edMax);
+        EditText celcius = findViewById(R.id.celcius);
+        EditText fahrenheit = findViewById(R.id.fahrenheit);
 
-        mybutton.setOnClickListener(new View.OnClickListener() {
+        conversor1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView t=(TextView) view;
-                Random random= new Random();
-                int nmin = (Integer.parseInt(edMin.getText().toString()));
-                int nmax = (Integer.parseInt(edMax.getText().toString()));
-                myTextView.setText(Integer.toString(random.nextInt(nmax-nmin+1)+nmin));
+//                TextView t=(TextView) view;
             }
         });
     }
