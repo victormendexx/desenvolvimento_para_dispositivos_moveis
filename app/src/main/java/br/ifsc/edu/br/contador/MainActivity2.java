@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.text.BreakIterator;
 
 public class MainActivity2 extends AppCompatActivity {
 
     Button btn1, btn3;
+    EditText editTextMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +23,14 @@ public class MainActivity2 extends AppCompatActivity {
 
             btn1=findViewById(R.id.buttonA1);
             btn3=findViewById(R.id.buttonA3);
+            editTextMsg=findViewById(R.id.editText1);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                String mensagem = editTextMsg.getText().toString();
+                intent.putExtra("msg", mensagem);
                 startActivity(intent);
             }
         });
@@ -32,6 +39,8 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity3.class);
+                String mensagem = editTextMsg.getText().toString();
+                intent.putExtra("msg", mensagem);
                 startActivity(intent);
             }
         });
