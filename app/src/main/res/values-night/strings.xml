@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Unity converter</string>
-    <string name="convert">convert</string>
     <string name="tela3">Activity 3</string>
     <string name="activity1">Go to activity 1</string>
     <string name="activity3">Go to activity 3</string>

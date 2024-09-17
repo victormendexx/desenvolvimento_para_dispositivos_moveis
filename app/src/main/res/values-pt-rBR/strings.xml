@@ -2,4 +2,7 @@
 <resources>
     <string name="app_name">Conversor de unidades</string>
     <string name="convert">converter</string>
+    <string name="tela3">Atividade 3</string>
+    <string name="activity1">Vá para a atividade 1</string>
+    <string name="activity3">Vá para a atividade 3</string>
 </resources>
