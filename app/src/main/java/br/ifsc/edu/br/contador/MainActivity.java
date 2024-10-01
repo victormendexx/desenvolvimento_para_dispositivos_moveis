@@ -2,92 +2,94 @@ package br.ifsc.edu.br.contador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.ifsc.edu.br.contador.MainActivity2;
+import br.ifsc.edu.br.contador.MainActivity3;
+import br.ifsc.edu.br.contador.MainActivityViewGroups;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+    private String note;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.wtf("CICLO DE VIDA", "passou pelo OnCreate");
 
-        Button button1 = findViewById(R.id.button1);
-        EditText celcius = findViewById(R.id.celcius);
-        EditText fahrenheit = findViewById(R.id.fahrenheit);
+        Button buttonSave = findViewById(R.id.buttonSave);
+        Button buttonPage2 = findViewById(R.id.buttonPage2);
+        Button buttonPage3 = findViewById(R.id.buttonPage3);
+        Button buttonPage4 = findViewById(R.id.buttonPage);
 
-        Button button2 = findViewById(R.id.button2);
-        EditText quilos = findViewById(R.id.quilos);
-        EditText libras = findViewById(R.id.libras);
+        EditText notas = findViewById(R.id.editText1);
 
-        Button button3 = findViewById(R.id.button3);
-        EditText quilometros = findViewById(R.id.quilometros);
-        EditText milhas = findViewById(R.id.milhas);
+        if(notas.getText() != null){
+            buttonSave.setOnClickListener(v -> {
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (celcius.getText().toString().isEmpty() && fahrenheit.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Digite algum valor antes de tentar converter", Toast.LENGTH_SHORT).show();
-                } else if (!celcius.getText().toString().isEmpty() && !fahrenheit.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Escolha apenas uma unidade para converter, apague um dos campos", Toast.LENGTH_SHORT).show();
-                }
+                note = notas.getText().toString();
+                notas.setText("");
+            });
+        }
 
-                else if (fahrenheit.getText().toString().isEmpty()) {
-                    double celciusValor = Double.parseDouble(celcius.getText().toString());
-                    double fahrenheitValor = (celciusValor * (9.0/5)) + 32;
-                    fahrenheit.setText(String.format("%.2f", fahrenheitValor));
-                } else if (celcius.getText().toString().isEmpty()) {
-                    double fahrenheitValor = Double.parseDouble(fahrenheit.getText().toString());
-                    double celciusValor = (fahrenheitValor - 32) * (5.0/9);
-                    celcius.setText(String.format("%.2f", celciusValor));
-                }
-            }
+        buttonPage2.setOnClickListener( v -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+
+            intent.putExtra("msg", note);
+            startActivity(intent);
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quilos.getText().toString().isEmpty() && libras.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Digite algum valor antes de tentar converter", Toast.LENGTH_SHORT).show();
-                } else if (!quilos.getText().toString().isEmpty() && !libras.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Escolha apenas uma unidade para converter, apague um dos campos", Toast.LENGTH_SHORT).show();
-                }
+        buttonPage3.setOnClickListener( v -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity3.class);
 
-                else if (libras.getText().toString().isEmpty()) {
-                    double quilosValor = Double.parseDouble(quilos.getText().toString());
-                    double librasValor = quilosValor * 2.20462;
-                    libras.setText(String.format("%.2f", librasValor));
-                } else if (quilos.getText().toString().isEmpty()) {
-                    double librasValor = Double.parseDouble(libras.getText().toString());
-                    double quilosValor = librasValor / 2.20462;
-                    quilos.setText(String.format("%.2f", quilosValor));
-                }
-            }
+            startActivity(intent);
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quilometros.getText().toString().isEmpty() && milhas.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Digite algum valor antes de tentar converter", Toast.LENGTH_SHORT).show();
-                } else if (!quilometros.getText().toString().isEmpty() && !milhas.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Escolha apenas uma unidade para converter, apague um dos campos", Toast.LENGTH_SHORT).show();
-                }
+        buttonPage4.setOnClickListener( v -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivityViewGroups.class);
 
-                else if (milhas.getText().toString().isEmpty()) {
-                    double quilometrosValor = Double.parseDouble(quilometros.getText().toString());
-                    double milhasValor = quilometrosValor * 0.621371;
-                    milhas.setText(String.format("%.2f", milhasValor));
-                } else if (quilometros.getText().toString().isEmpty()) {
-                    double milhasValor = Double.parseDouble(milhas.getText().toString());
-                    double quilometrosValor = milhasValor / 0.621371;
-                    quilometros.setText(String.format("%.2f", quilometrosValor));
-                }
-            }
+            startActivity(intent);
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("Ciclo de vida", "passou pelo onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("Ciclo de vida", "passou pelo onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("Ciclo de vida", "passou pelo onPause");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("Ciclo de vida", "passou pelo onRestart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Ciclo de vida", "passou pelo onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("Ciclo de vida", "passou pelo onDestroy");
     }
 }

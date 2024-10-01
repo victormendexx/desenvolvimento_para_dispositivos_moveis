@@ -2,48 +2,27 @@ package br.ifsc.edu.br.contador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-
-import java.text.BreakIterator;
+import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
-
-    Button btn1, btn3;
-    EditText editTextMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-            btn1=findViewById(R.id.buttonA1);
-            btn3=findViewById(R.id.buttonA3);
-            editTextMsg=findViewById(R.id.editText1);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                String mensagem = editTextMsg.getText().toString();
-                intent.putExtra("msg", mensagem);
-                startActivity(intent);
-            }
-        });
 
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity3.class);
-                String mensagem = editTextMsg.getText().toString();
-                intent.putExtra("msg", mensagem);
-                startActivity(intent);
-            }
-        });
-        Log.d("Ciclo de vida", "passou pelo onCreate");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Bundle bundle = getIntent().getExtras();
+        String string = bundle.getString("msg");
+        TextView textView = findViewById(R.id.editTextId);
+        textView.setText(string);
     }
 }
